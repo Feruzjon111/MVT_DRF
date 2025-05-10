@@ -26,11 +26,11 @@ python manage.py runserver
 ## 🔐 Autentifikatsiya
 
 Loyiha foydalanuvchilarni email yoki telefon raqam orqali OTP (bir martalik parol) bilan ro'yxatdan o'tkazish va login qilish funksiyalarini qo'llab-quvvatlaydi.
-📬 API Test
+## 📬 API Test
 
 API so‘rovlarini test qilish uchun Postman yoki cURL ishlatishingiz mumkin.
-✍️ Muallif
+## ✍️ Muallif
 
-Feruzjon Muzaffarov
-GitHub: @Feruzjon111
+## Feruzjon Muzaffarov
+## GitHub: @Feruzjon111
 
