@@ -21,8 +21,9 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
+```
 
-🔐 Autentifikatsiya
+## 🔐 Autentifikatsiya
 
 Loyiha foydalanuvchilarni email yoki telefon raqam orqali OTP (bir martalik parol) bilan ro'yxatdan o'tkazish va login qilish funksiyalarini qo'llab-quvvatlaydi.
 📬 API Test
@@ -30,6 +31,6 @@ Loyiha foydalanuvchilarni email yoki telefon raqam orqali OTP (bir martalik paro
 API so‘rovlarini test qilish uchun Postman yoki cURL ishlatishingiz mumkin.
 ✍️ Muallif
 
-Feruzjon111
+Feruzjon Muzaffarov
 GitHub: @Feruzjon111
 
