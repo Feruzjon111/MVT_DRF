@@ -223,7 +223,7 @@ def transactions_by_date_range(request):
         total_income = total_expense = balance = 0
 
     category_expenses = (
-        transactions
+        Transaction.objects
         .filter(type='OUT')
         .values('category', 'valyuta_turi')
         .annotate(total_amount=Sum('amount'))
