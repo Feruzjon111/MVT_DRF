@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Transaction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #87a2e8, #046f5c);
+            animation: fadeIn 1s ease-out;
+        }
+
+        h1 {
+            background: linear-gradient(135deg, #459097, #314baa);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+            animation: fadeIn 1s ease-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        .container {
+            width: 50%;
+            margin: 40px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #c2d0f6, #73deca);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            animation: slideIn 1s ease-out;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form p {
+            margin: 15px 0;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input, select, textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: #f9f9f9;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            outline: none;
+            background-color: #eafbea;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        button:active {
+            background-color: #388E3C;
+            transform: scale(0.95);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        a {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 12px 25px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        a:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        a:active {
+            background-color: #388E3C;
+            transform: scale(0.95);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        #karta-div, #valyuta-div {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add Transaction</h1>
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.date.label_tag }} {{ form.date }}
+            {{ form.type.label_tag }} {{ form.type }}
+            {{ form.category.label_tag }} {{ form.category }}
+            {{ form.pul_turi.label_tag }} {{ form.pul_turi }}
+            {{ form.amount.label_tag }} {{ form.amount }}
+
+            <!-- Karta nomi maydoni -->
+            <div id="karta-div" style="display: none;">
+                {{ form.karta_nomi.label_tag }} {{ form.karta_nomi }}
+            </div>
+
+            <!-- Valyuta turi maydoni -->
+            <div id="valyuta-div" style="display: none;">
+                {{ form.valyuta_turi.label_tag }} {{ form.valyuta_turi }}
+            </div>
+
+            {{ form.description.label_tag }} {{ form.description }}
+            <button type="submit">Add</button>
+        </form>
+
+        {% if error_message %}
+            <p style="color: red;">{{ error_message }}</p>
+        {% endif %}
+        <a href="{% url 'index' %}">Back</a>
+    </div>
+
+    <script>
+        const kirimCategories = {
+            'oylik': 'Oylik ish haqi',
+            'avans': 'Avans',
+            'kunlik': 'Kunlik ish',
+            'sovga': 'Sovg‘a',
+            'xizmat': 'Xizmat haqi',
+            'boshqa_kirim': 'Boshqa kirim',
+        };
+
+        const chiqimCategories = {
+            'ovqat': 'Ovqat',
+            'yoqilg‘i': 'Yoqilg‘i',
+            'ijara': 'Ijara haqi',
+            'internet': 'Internet/xizmatlar',
+            'sotib_olish': 'Sotib olish',
+            'boshqa_chiqim': 'Boshqa chiqim',
+        };
+
+        const typeSelect = document.getElementById('typeSelect');
+        const categorySelect = document.getElementById('categorySelect');
+        const pulTuriSelect = document.getElementById('id_pul_turi');
+        const kartaDiv = document.getElementById('karta-div');
+        const valyutaDiv = document.getElementById('valyuta-div');
+
+        function updateCategoryOptions() {
+            const selectedType = typeSelect.value;
+            const categories = selectedType === 'IN' ? kirimCategories : chiqimCategories;
+            categorySelect.innerHTML = '';
+
+            for (const [value, label] of Object.entries(categories)) {
+                const option = document.createElement('option');
+                option.value = value;
+                option.textContent = label;
+                categorySelect.appendChild(option);
+            }
+        }
+
+        function toggleExtraFields() {
+            const selectedPulTuri = pulTuriSelect.value;
+            kartaDiv.style.display = selectedPulTuri === 'karta' ? 'block' : 'none';
+            valyutaDiv.style.display = selectedPulTuri === 'valyuta' ? 'block' : 'none';
+        }
+
+        if (typeSelect && categorySelect && pulTuriSelect) {
+            typeSelect.addEventListener('change', updateCategoryOptions);
+            pulTuriSelect.addEventListener('change', toggleExtraFields);
+            document.addEventListener('DOMContentLoaded', () => {
+                updateCategoryOptions();
+                toggleExtraFields();
+            });
+        }
+    </script>
+</body>
+</html>

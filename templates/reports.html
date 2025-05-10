@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reports</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #6f90e1, #227465);
+            animation: fadeIn 1s ease-out;
+
+        }
+
+        h1 {
+            background: linear-gradient(135deg, #95b1f4, #48a76c);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+            animation: fadeIn 1s ease-out;
+            box-shadow: #333;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            width: 50%;
+            margin: 40px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #a1b8f0, #48a796);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            animation: slideIn 1s ease-out;
+            text-align: center;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .summary-box {
+            background: linear-gradient(135deg, #c5d3f7, #9dcdc4);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .summary-box:hover {
+            background-color: #d6d6d6;
+        }
+
+        .summary-box p {
+            font-size: 18px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .summary-box button {
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .summary-box button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        .summary-box button:active {
+            background-color: #388E3C;
+            transform: scale(0.95);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .transaction-list {
+            text-align: left;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .transaction-list table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .transaction-list table, .transaction-list th, .transaction-list td {
+            border: 1px solid #ddd;
+        }
+
+        .transaction-list th, .transaction-list td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .transaction-list th {
+            background-color: #f4f4f4;
+        }
+
+        .btn-container {
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        .button:active {
+            background-color: #388E3C;
+            transform: scale(0.95);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Hisobotlar</h1>
+    <div class="container">
+        <div class="summary-box" id="summaryBox">
+            <p>Umumiy Kirim: {{ total_income }}</p>
+            <p>Umumiy Chiqim: {{ total_expense }}</p>
+            <p>Balance: {{ balance }}</p>
+
+            <div class="btn-container">
+                <button onclick="fetchStats('daily')">Kunlik</button>
+                <button onclick="fetchStats('weekly')">Haftalik</button>
+                <button onclick="fetchStats('monthly')">Oylik</button>
+            </div>
+
+            <div id="dailyStats" class="hidden">
+                <h2>Kunlik Hisob</h2>
+                <p>Kirim: <span id="dailyIncome"></span></p>
+                <p>Chiqim: <span id="dailyExpense"></span></p>
+                <div class="transaction-list" id="dailyTransactions">
+                    <h3>So'nggi Kunlik Tranzaksiyalar:</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tur</th>
+                                <th>Summa</th>
+                                <th>Tavsif</th>
+                                <th>Sana</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dailyTransactionTable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="weeklyStats" class="hidden">
+                <h2>Haftalik Hisob</h2>
+                <p>Kirim: <span id="weeklyIncome"></span></p>
+                <p>Chiqim: <span id="weeklyExpense"></span></p>
+                <div class="transaction-list" id="weeklyTransactions">
+                    <h3>So'nggi Haftalik Tranzaksiyalar:</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tur</th>
+                                <th>Summa</th>
+                                <th>Tavsif</th>
+                                <th>Sana</th>
+                            </tr>
+                        </thead>
+                        <tbody id="weeklyTransactionTable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="monthlyStats" class="hidden">
+                <h2>Oylik Hisob</h2>
+                <p>Kirim: <span id="monthlyIncome"></span></p>
+                <p>Chiqim: <span id="monthlyExpense"></span></p>
+                <div class="transaction-list" id="monthlyTransactions">
+                    <h3>So'nggi Oylik Tranzaksiyalar:</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tur</th>
+                                <th>Summa</th>
+                                <th>Tavsif</th>
+                                <th>Sana</th>
+                            </tr>
+                        </thead>
+                        <tbody id="monthlyTransactionTable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <a href="{% url 'index' %}" class="button">Back</a>
+    </div>
+
+    <script>
+        function fetchStats(period) {
+            let url;
+            if (period === 'daily') {
+                url = '{% url "daily_stats" %}';
+            } else if (period === 'weekly') {
+                url = '{% url "weekly_stats" %}';
+            } else if (period === 'monthly') {
+                url = '{% url "monthly_stats" %}';
+            }
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (period === 'daily') {
+                        document.getElementById('dailyIncome').textContent = data.daily_income;
+                        document.getElementById('dailyExpense').textContent = data.daily_expense;
+
+                        let transactionTable = document.getElementById('dailyTransactionTable');
+                        transactionTable.innerHTML = '';
+                        data.daily_transactions.forEach(transaction => {
+                            let row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${transaction.type === 'IN' ? 'Kirim' : 'Chiqim'}</td>
+                                <td>${transaction.amount}</td>
+                                <td>${transaction.description || 'N/A'}</td>
+                                <td>${transaction.date}</td>
+                            `;
+                            transactionTable.appendChild(row);
+                        });
+
+                        document.getElementById('dailyStats').classList.remove('hidden');
+                    } else if (period === 'weekly') {
+                        document.getElementById('weeklyIncome').textContent = data.weekly_income;
+                        document.getElementById('weeklyExpense').textContent = data.weekly_expense;
+
+                        let transactionTable = document.getElementById('weeklyTransactionTable');
+                        transactionTable.innerHTML = '';
+                        data.weekly_transactions.forEach(transaction => {
+                            let row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${transaction.type === 'IN' ? 'Kirim' : 'Chiqim'}</td>
+                                <td>${transaction.amount}</td>
+                                <td>${transaction.description || 'N/A'}</td>
+                                <td>${transaction.date}</td>
+                            `;
+                            transactionTable.appendChild(row);
+                        });
+
+                        document.getElementById('weeklyStats').classList.remove('hidden');
+                    } else if (period === 'monthly') {
+                        document.getElementById('monthlyIncome').textContent = data.monthly_income;
+                        document.getElementById('monthlyExpense').textContent = data.monthly_expense;
+
+                        let transactionTable = document.getElementById('monthlyTransactionTable');
+                        transactionTable.innerHTML = '';
+                        data.monthly_transactions.forEach(transaction => {
+                            let row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${transaction.type === 'IN' ? 'Kirim' : 'Chiqim'}</td>
+                                <td>${transaction.amount}</td>
+                                <td>${transaction.description || 'N/A'}</td>
+                                <td>${transaction.date}</td>
+                            `;
+                            transactionTable.appendChild(row);
+                        });
+
+                        document.getElementById('monthlyStats').classList.remove('hidden');
+                    }
+                });
+
+            document.getElementById('dailyStats').classList.add('hidden');
+            document.getElementById('weeklyStats').classList.add('hidden');
+            document.getElementById('monthlyStats').classList.add('hidden');
+
+            if (period === 'daily') {
+                document.getElementById('dailyStats').classList.remove('hidden');
+            } else if (period === 'weekly') {
+                document.getElementById('weeklyStats').classList.remove('hidden');
+            } else if (period === 'monthly') {
+                document.getElementById('monthlyStats').classList.remove('hidden');
+            }
+        }
+
+        // Show weekly stats by default
+        document.addEventListener("DOMContentLoaded", function() {
+            fetchStats('weekly');
+        });
+    </script>
+</body>
+</html>

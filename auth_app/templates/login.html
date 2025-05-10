@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method="post" class="w-[300px] flex flex-col gap-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+    {% csrf_token %}
+    <h1 class="text-2xl text-center">Tizimga kirish</h1>
+
+    <input
+        type="text"
+        name="identifier"
+        class="w-full p-2 rounded border border-slate-500"
+        placeholder="Telefon raqam yoki email"
+        required
+        autofocus
+    >
+
+    <input
+        type="password"
+        name="password"
+        class="w-full p-2 rounded border border-slate-500"
+        placeholder="Parol"
+        required
+    >
+
+    <button class="mt-4 p-2 w-full rounded border border-blue-900 text-blue-900 hover:text-white hover:bg-blue-900 transition">
+        Kirish
+    </button>
+
+    <small class="text-center">
+        Akkauntingiz yo'qmi? Hoziroq
+        <a href="{% url 'register' %}" class="text-blue-900 font-bold">ro'yxatdan o'ting</a>
+    </small>
+</form>
+{% endblock content %}

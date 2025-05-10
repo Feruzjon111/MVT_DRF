@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Foydalanuvchi Profili</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #e0f2f1, #80cbc4);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            animation: slideIn 0.6s ease;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #00796b;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 12px 0;
+            color: #444;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #00695c;
+        }
+
+        .actions {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .actions a {
+            padding: 12px 24px;
+            background-color: #00796b;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        .actions a:hover {
+            background-color: #004d40;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Profilingiz</h1>
+    <p><span class="label">Ism:</span> {{ user.first_name }}</p>
+    <p><span class="label">Familiya:</span> {{ user.last_name }}</p>
+    <p><span class="label">Email:</span> {{ user.email }}</p>
+    <p><span class="label">Telefon:</span> {{ user.phone }}</p>
+    <p><span class="label">Ro'yxatdan o'tgan sana:</span> {{ user.date_joined|date:"Y-m-d H:i" }}</p>
+
+    <div class="actions">
+        <a href="{% url 'update_profile' %}">Profilni yangilash</a>
+        <a href="{% url 'logout' %}">Chiqish</a>
+        <a href="{% url 'index' %}">Bosh sahifa</a>
+    </div>
+</div>
+</body>
+</html>
+{% endblock content %}
