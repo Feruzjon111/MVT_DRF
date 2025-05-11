@@ -1,13 +1,5 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
-from django.http import HttpResponse
-from django.utils.translation import gettext as _
-
-def my_view(request):
-    greeting = _("Welcome to your income and expense tracker.")
-    return HttpResponse(greeting)
-
-
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, phone, email=None, password=None, **extra_fields):
