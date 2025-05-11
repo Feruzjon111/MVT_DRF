@@ -1,0 +1,358 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PAKET VERSIYASI\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-11 11:32+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Uzbek <LL@li.org>\n"
+"Language: uz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Enter a valid integer."
+msgstr "To'g'ri butun sonni kiriting."
+
+msgid "Enter a valid email address."
+msgstr "To'g'ri elektron pochta manzilini kiriting."
+
+msgid "Enter a valid IPv4 address."
+msgstr "To'g'ri IPv4 manzilini kiriting."
+
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr "Iltimos, bu qiymat %(limit_value)s bo'lishi kerak (hozirgi qiymat %(show_value)s)."
+
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr "Iltimos, bu qiymat %(limit_value)s dan kichik yoki teng bo'lishi kerak."
+
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr "Iltimos, bu qiymat %(limit_value)s dan katta yoki teng bo'lishi kerak."
+
+msgid "Ensure this value is a multiple of step size %(limit_value)s."
+msgstr "Iltimos, bu qiymat %(limit_value)s qadami bo'yicha ko'paytma bo'lishi kerak."
+
+msgid "Enter a number."
+msgstr "Raqam kiriting."
+
+msgid "Null characters are not allowed."
+msgstr "Null belgilarga ruxsat etilmaydi."
+
+msgid "and"
+msgstr "va"
+
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr "Bu %(field_labels)s bilan %(model_name)s allaqachon mavjud."
+
+msgid "Constraint “%(name)s” is violated."
+msgstr "“%(name)s” cheklovi buzildi."
+
+msgid "Value %(value)r is not a valid choice."
+msgstr "Qiymat %(value)r to'g'ri variant emas."
+
+msgid "This field cannot be null."
+msgstr "Bu maydon null bo'lishi mumkin emas."
+
+msgid "This field cannot be blank."
+msgstr "Bu maydon bo'sh bo'lishi mumkin emas."
+
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr "Bu %(field_label)s bilan %(model_name)s allaqachon mavjud."
+
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr "%(field_label)s %(date_field_label)s %(lookup_type)s uchun yagona bo'lishi kerak."
+
+msgid "Field of type: %(field_type)s"
+msgstr "Maydon turi: %(field_type)s"
+
+msgid "“%(value)s” value must be either True or False."
+msgstr "“%(value)s” qiymati True yoki False bo'lishi kerak."
+
+msgid "“%(value)s” value must be either True, False, or None."
+msgstr "“%(value)s” qiymati True, False yoki None bo'lishi kerak."
+
+msgid "Boolean (Either True or False)"
+msgstr "Boolean (True yoki False)"
+
+msgid "String (up to %(max_length)s)"
+msgstr "Matn (%(max_length)s gacha)"
+
+msgid "String (unlimited)"
+msgstr "Matn (cheksiz)"
+
+msgid "Comma-separated integers"
+msgstr "Vergul bilan ajratilgan butun sonlar"
+
+msgid ""
+"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr "“%(value)s” qiymati noto'g'ri sana formatiga ega. Bu YYYY-MM-DD formatida bo'lishi kerak."
+
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr "“%(value)s” qiymati to'g'ri formatga ega (YYYY-MM-DD), lekin bu noto'g'ri sana."
+
+msgid "Date (without time)"
+msgstr "Sana (vaqt bilan emas)"
+
+msgid ""
+"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
+"uuuuuu]][TZ] format."
+msgstr "“%(value)s” qiymati noto'g'ri formatga ega. Bu YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] formatida bo'lishi kerak."
+
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr "“%(value)s” qiymati to'g'ri formatga ega (YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]), lekin bu noto'g'ri sana/vaqt."
+
+msgid "Date and time"
+msgstr "Sana va vaqt"
+
+
+#: templates/index.html:10
+msgid "Finance App"
+msgstr "Moliyaviy Dastur"
+
+#: templates/index.html:123
+msgid "Income-Expense"
+msgstr "Kirim-Chiqim"
+
+#: templates/index.html:124
+msgid "Profile"
+msgstr "Profil"
+
+#: templates/index.html:125
+msgid "Change"
+msgstr "O'zgartirish"
+
+#: templates/index.html:133
+msgid "Balance"
+msgstr "Balans"
+
+#: templates/index.html:134
+msgid "sum"
+msgstr "so'm"
+
+#: templates/index.html:135
+msgid "Add Transaction"
+msgstr "Tranzaksiya qo'shish"
+
+#: templates/index.html:136
+msgid "Reports"
+msgstr "Hisobotlar"
+
+#: templates/index.html:137
+msgid "Date Range Report"
+msgstr "Vaqt oralig'i hisoboti"
+
+#: templates/index.html:141
+msgid "Income"
+msgstr "Kirim"
+
+#: templates/index.html:142
+msgid "Expense"
+msgstr "Chiqim"
+
+#: templates/index.html:143
+msgid "All"
+msgstr "Hammasi"
+
+#: templates/index.html:150
+msgid "Cash"
+msgstr "Naqd"
+
+#: templates/index.html:152
+msgid "Card"
+msgstr "Karta"
+
+#: templates/index.html:154
+msgid "Currency"
+msgstr "Valyuta"
+
+#: templates/index.html:234
+msgid "Recent Transactions"
+msgstr "Oxirgi tranzaksiyalar"
+
+#: templates/index.html:268
+msgid "Amount"
+msgstr "Summa"
+
+
+msgid "Date"
+msgstr "Sana"
+
+msgid "Type"
+msgstr "Turi"
+
+msgid "Category"
+msgstr "Kategoriya"
+
+msgid "Payment Method"
+msgstr "To‘lov usuli"
+
+msgid "Card Name"
+msgstr "Karta nomi"
+
+msgid "Currency Type"
+msgstr "Valyuta turi"
+
+msgid "Description"
+msgstr "Izoh"
+
+msgid "Add"
+msgstr "Qo‘shish"
+
+msgid "Back"
+msgstr "Orqaga"
+
+msgid "Dashboard"
+msgstr "Bosh sahifa"
+
+msgid "Choose your preferred language"
+msgstr "Afzal tilni tanlang"
+
+msgid "Profilingiz"
+msgstr "Sizning profilingiz"
+
+msgid "Ism:"
+msgstr "Ism:"
+
+msgid "Familiya:"
+msgstr "Familiya:"
+
+msgid "Email:"
+msgstr "Elektron pochta:"
+
+msgid "Telefon:"
+msgstr "Telefon:"
+
+msgid "Ro'yxatdan o'tgan sana:"
+msgstr "Ro'yxatdan o'tgan sana:"
+
+msgid "Profilni yangilash"
+msgstr "Profilni yangilash"
+
+msgid "Chiqish"
+msgstr "Chiqish"
+
+msgid "Bosh sahifa"
+msgstr "Bosh sahifa"
+
+msgid "Update Profile"
+msgstr "Profilni yangilash"
+
+msgid "Update"
+msgstr "Yangilash"
+
+msgid "Back to Profile"
+msgstr "Profilga qaytish"
+
+
+msgid "Total Income"
+msgstr "Umumiy Kirim"
+
+msgid "Total Expense"
+msgstr "Umumiy Chiqim"
+
+
+msgid "Daily"
+msgstr "Kunlik"
+
+msgid "Weekly"
+msgstr "Haftalik"
+
+msgid "Monthly"
+msgstr "Oylik"
+
+msgid "Daily Report"
+msgstr "Kunlik Hisob"
+
+
+msgid "Recent Daily Transactions"
+msgstr "So'nggi Kunlik Tranzaksiyalar"
+
+
+msgid "Weekly Report"
+msgstr "Haftalik Hisob"
+
+msgid "Recent Weekly Transactions"
+msgstr "So'nggi Haftalik Tranzaksiyalar"
+
+msgid "Monthly Report"
+msgstr "Oylik Hisob"
+
+msgid "Recent Monthly Transactions"
+msgstr "So'nggi Oylik Tranzaksiyalar"
+
+msgid "Last Monthly Transactions"
+msgstr "So‘nggi Oylik Tranzaksiyalar"
+
+
+msgid "Last Daily Transactions"
+msgstr "So‘nggi Kunlik Tranzaksiyalar"
+
+msgid "Last Weekly Transactions"
+msgstr "So‘nggi Haftalik Tranzaksiyalar"
+
+msgid "No income transactions found in the selected date range."
+msgstr "Tanlangan sanalar oralig'ida kirim topilmadi."
+
+msgid "No expense transactions found in the selected date range."
+msgstr "Tanlangan sanalar oralig'ida chiqim topilmadi."
+
+
+msgid "Income/Expense by Date Range"
+msgstr "Sana oralig‘i bo‘yicha Kirim/Chiqim"
+
+msgid "Start Date:"
+msgstr "Boshlanish sanasi:"
+
+msgid "End Date:"
+msgstr "Tugash sanasi:"
+
+msgid "Login to the system"
+msgstr "Tizimga kirish"
+
+msgid "Phone number or email"
+msgstr "Telefon raqam yoki email"
+
+msgid "Password"
+msgstr "Parol"
+
+msgid "Login"
+msgstr "Kirish"
+
+msgid "Don't have an account? Register now"
+msgstr "Akkauntingiz yo'qmi? Hoziroq ro'yxatdan o'ting"
+
+msgid "Sign up"
+msgstr "Ro'yxatdan o'tish"
+
+msgid "Register in the system"
+msgstr "Tizimda ro'yxatdan o'tish"
+
+msgid "First Name"
+msgstr "Ism"
+
+msgid "Last Name"
+msgstr "Familiya"
+
+msgid "Email Address"
+msgstr "E-mail manzil"
+
+msgid "Phone Number"
+msgstr "Telefon raqami"
+
+
+msgid "Confirm Password"
+msgstr "Parolni tasdiqlang"
+
+msgid "Sign Up"
+msgstr "Ro'yxatdan o'tish"
+
+msgid "Already have an account?"
+msgstr "Akkauntingiz allaqachon bormi?"
+

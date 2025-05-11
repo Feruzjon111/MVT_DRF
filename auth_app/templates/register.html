@@ -1,19 +1,31 @@
 {% extends 'base.html' %}
-
+{% load static i18n %}
 {% block content %}
+
 <form action="" method="post" class="w-[300px] flex flex-col gap-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
     {% csrf_token %}
-    <h1 class="text-2xl text-center">Tizimda ro'yxatda o'tish</h1>
-    <input type="text" class="w-full p-2 rounded border border-slate-500" placeholder="Ism" name="first_name">
-    <input type="text" class="w-full p-2 rounded border border-slate-500" placeholder="Familiya" name="last_name">
-    <input type="email" class="w-full p-2 rounded border border-slate-500" placeholder="E-mail manzil" name="email">
-    <input type="text" class="w-full p-2 rounded border border-slate-500" placeholder="Telefon raqami" name="phone" required>
-    <input type="password" class="w-full p-2 rounded border border-slate-500" placeholder="Parol" name="password1" required>
-    <input type="password" class="w-full p-2 rounded border border-slate-500" placeholder="Parolni tasdiqlang" name="password2" required>
-    <button class="mt-4 p-2 w-full rounded border border-blue-900 text-blue-900 hover:text-white hover:bg-blue-900 transition">Ro'yxatdan o'tish</button>
+    <h1 class="text-2xl text-center">{% trans "Register in the system" %}</h1>
+
+    <input type="text" class="w-full p-2 rounded border border-slate-500" placeholder="{% trans 'First Name' %}" name="first_name">
+
+    <input type="text" class="w-full p-2 rounded border border-slate-500" placeholder="{% trans 'Last Name' %}" name="last_name">
+
+    <input type="email" class="w-full p-2 rounded border border-slate-500" placeholder="{% trans 'Email Address' %}" name="email">
+
+    <input type="text" class="w-full p-2 rounded border border-slate-500" placeholder="{% trans 'Phone Number' %}" name="phone" required>
+
+    <input type="password" class="w-full p-2 rounded border border-slate-500" placeholder="{% trans 'Password' %}" name="password1" required>
+
+    <input type="password" class="w-full p-2 rounded border border-slate-500" placeholder="{% trans 'Confirm Password' %}" name="password2" required>
+
+    <button class="mt-4 p-2 w-full rounded border border-blue-900 text-blue-900 hover:text-white hover:bg-blue-900 transition">
+        {% trans 'Sign Up' %}
+    </button>
+
     <small class="text-center">
-        Akkauntingiz allaqachon bormi ?
-        <a href="{% url 'login' %}" class="text-blue-900 font-bold">Kirish</a>
+        {% trans "Already have an account?" %}
+        <a href="{% url 'auth_app:login' %}" class="text-blue-900 font-bold">{% trans 'Login' %}</a>
     </small>
 </form>
+
 {% endblock content %}

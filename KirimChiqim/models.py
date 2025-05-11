@@ -1,5 +1,12 @@
 from django.db import models
 from django.conf import settings
+from django.http import HttpResponse
+from django.utils.translation import gettext as _
+
+def my_view(request):
+    greeting = _("Welcome to your income and expense tracker.")
+    return HttpResponse(greeting)
+
 
 class Transaction(models.Model):
     TYPE_CHOICES = (

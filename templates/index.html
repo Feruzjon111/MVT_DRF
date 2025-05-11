@@ -1,8 +1,10 @@
+{% load i18n %}
+
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
-    <title>Finance App</title>
+    <title>{% trans "Finance App" %}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,6 +48,34 @@
         .profile-link:hover {
             background-color: #4CAF50;
             color: white;
+        }
+
+        .language-form {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .language-form select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .language-form input[type="submit"] {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .language-form input[type="submit"]:hover {
+            background-color: #45a049;
         }
 
         .main-container {
@@ -210,131 +240,140 @@
 </head>
 <body>
     <div class="header">
-        <h1>Kirim-Chiqim</h1>
-        <a href="{% url 'profile' %}" class="profile-link">Profile</a>
+        <form class="language-form" action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.path }}">
+            <select name="language">
+                <option value="uz" {% if LANGUAGE_CODE == 'uz' %}selected{% endif %}>O‘zbekcha</option>
+                <option value="ru" {% if LANGUAGE_CODE == 'ru' %}selected{% endif %}>Русский</option>
+                <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+            </select>
+            <input type="submit" value="{% trans 'Change' %}">
+        </form>
+        <h1>{% trans "Income-Expense" %}</h1>
+        <a href="{% url 'auth_app:profile' %}" class="profile-link">{% trans "Profile" %}</a>
     </div>
 
     <div class="main-container">
         <div class="info-container">
             <div class="centered-content">
-                <p>Balance: {{ balance }} so'm</p>
-                <a href="{% url 'add_transaction' %}" class="button">O'tkazma qo'shish</a>
-                <a href="{% url 'reports' %}" class="button">Hisobot</a>
-                <a href="{% url 'transactions_by_date_range' %}" class="button">Vaqt oralig'idagi Hisob</a>
+                <p>{% trans "Balance" %}: {{ balance }} {% trans "sum" %}</p>
+                <a href="{% url 'add_transaction' %}" class="button">{% trans "Add Transaction" %}</a>
+                <a href="{% url 'reports' %}" class="button">{% trans "Reports" %}</a>
+                <a href="{% url 'transactions_by_date_range' %}" class="button">{% trans "Date Range Report" %}</a>
             </div>
 
             <div class="tab-container">
-                <button class="tab active" onclick="showTab('income')">Kirim</button>
-                <button class="tab" onclick="showTab('expense')">Chiqim</button>
-                <button class="tab" onclick="showTab('all')">Umumiy</button>
+                <button class="tab active" onclick="showTab('income')">{% trans "Income" %}</button>
+                <button class="tab" onclick="showTab('expense')">{% trans "Expense" %}</button>
+                <button class="tab" onclick="showTab('all')">{% trans "All" %}</button>
             </div>
 
-<div id="income" class="tab-content active">
-    <ul>
-        {% for transaction in transactions %}
-            {% if transaction.type == 'IN' %}
-                <li class="transaction-detail">
-                    <div>{{ transaction.date }}</div>
-                    <div>Kirim</div>
-                    <div>
-                        {% if transaction.valyuta_turi %}
-                            {{ transaction.amount }} {{ transaction.valyuta_turi }}
-                        {% else %}
-                            {{ transaction.amount }} so'm
+            <div id="income" class="tab-content active">
+                <ul>
+                    {% for transaction in transactions %}
+                        {% if transaction.type == 'IN' %}
+                            <li class="transaction-detail">
+                                <div>{{ transaction.date }}</div>
+                                <div>{% trans "Income" %}</div>
+                                <div>
+                                    {% if transaction.valyuta_turi %}
+                                        {{ transaction.amount }} {{ transaction.valyuta_turi }}
+                                    {% else %}
+                                        {{ transaction.amount }} {% trans "sum" %}
+                                    {% endif %}
+                                </div>
+                                <div>{{ transaction.hisob }}</div>
+                                <div>{{ transaction.category }}</div>
+                                <div>{{ transaction.description }}</div>
+                                <div>
+                                    {% if transaction.pul_turi == 'naqd' %}
+                                        {% trans "Cash" %}
+                                    {% elif transaction.pul_turi == 'karta' %}
+                                        {% trans "Card" %}: {{ transaction.karta_nomi }}
+                                    {% elif transaction.pul_turi == 'valyuta' %}
+                                        {% trans "Currency" %}: {{ transaction.valyuta_turi }}
+                                    {% endif %}
+                                </div>
+                            </li>
                         {% endif %}
-                    </div>
-                    <div>{{ transaction.hisob }}</div>
-                    <div>{{ transaction.category }}</div>
-                    <div>{{ transaction.description }}</div>
-                    <div>
-                        {% if transaction.pul_turi == 'naqd' %}
-                            Naqd
-                        {% elif transaction.pul_turi == 'karta' %}
-                            Karta: {{ transaction.karta_nomi }}
-                        {% elif transaction.pul_turi == 'valyuta' %}
-                            Valyuta: {{ transaction.valyuta_turi }}
-                        {% endif %}
-                    </div>
-                </li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-</div>
+                    {% endfor %}
+                </ul>
+            </div>
 
-<div id="expense" class="tab-content">
-    <ul>
-        {% for transaction in transactions %}
-            {% if transaction.type == 'OUT' %}
-                <li class="transaction-detail">
-                    <div>{{ transaction.date }}</div>
-                    <div>Chiqim</div>
-                    <div>
-                        {% if transaction.valyuta_turi %}
-                            {{ transaction.amount }} {{ transaction.valyuta_turi }}
-                        {% else %}
-                            {{ transaction.amount }} so'm
+            <div id="expense" class="tab-content">
+                <ul>
+                    {% for transaction in transactions %}
+                        {% if transaction.type == 'OUT' %}
+                            <li class="transaction-detail">
+                                <div>{{ transaction.date }}</div>
+                                <div>{% trans "Expense" %}</div>
+                                <div>
+                                    {% if transaction.valyuta_turi %}
+                                        {{ transaction.amount }} {{ transaction.valyuta_turi }}
+                                    {% else %}
+                                        {{ transaction.amount }} {% trans "sum" %}
+                                    {% endif %}
+                                </div>
+                                <div>{{ transaction.hisob }}</div>
+                                <div>{{ transaction.category }}</div>
+                                <div>{{ transaction.description }}</div>
+                                <div>
+                                    {% if transaction.pul_turi == 'naqd' %}
+                                        {% trans "Cash" %}
+                                    {% elif transaction.pul_turi == 'karta' %}
+                                        {% trans "Card" %}: {{ transaction.karta_nomi }}
+                                    {% elif transaction.pul_turi == 'valyuta' %}
+                                        {% trans "Currency" %}: {{ transaction.valyuta_turi }}
+                                    {% endif %}
+                                </div>
+                            </li>
                         {% endif %}
-                    </div>
-                    <div>{{ transaction.hisob }}</div>
-                    <div>{{ transaction.category }}</div>
-                    <div>{{ transaction.description }}</div>
-                    <div>
-                        {% if transaction.pul_turi == 'naqd' %}
-                            Naqd
-                        {% elif transaction.pul_turi == 'karta' %}
-                            Karta: {{ transaction.karta_nomi }}
-                        {% elif transaction.pul_turi == 'valyuta' %}
-                            Valyuta: {{ transaction.valyuta_turi }}
-                        {% endif %}
-                    </div>
-                </li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-</div>
+                    {% endfor %}
+                </ul>
+            </div>
 
-<div id="all" class="tab-content">
-    <ul>
-        {% for transaction in transactions %}
-            <li class="transaction-detail">
-                <div>{{ transaction.date }}</div>
-                <div>
-                    {% if transaction.type == 'IN' %}
-                        Kirim
-                    {% else %}
-                        Chiqim
-                    {% endif %}
-                </div>
-                <div>
-                    {% if transaction.valyuta_turi %}
-                        {{ transaction.amount }} {{ transaction.valyuta_turi }}
-                    {% else %}
-                        {{ transaction.amount }} so'm
-                    {% endif %}
-                </div>
-                <div>{{ transaction.hisob }}</div>
-                <div>{{ transaction.category }}</div>
-                <div>{{ transaction.description }}</div>
-                <div>
-                    {% if transaction.pul_turi == 'naqd' %}
-                        Naqd
-                    {% elif transaction.pul_turi == 'karta' %}
-                        Karta: {{ transaction.karta_nomi }}
-                    {% elif transaction.pul_turi == 'valyuta' %}
-                        Valyuta: {{ transaction.valyuta_turi }}
-                    {% endif %}
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
-</div>
-
+            <div id="all" class="tab-content">
+                <ul>
+                    {% for transaction in transactions %}
+                        <li class="transaction-detail">
+                            <div>{{ transaction.date }}</div>
+                            <div>
+                                {% if transaction.type == 'IN' %}
+                                    {% trans "Income" %}
+                                {% else %}
+                                    {% trans "Expense" %}
+                                {% endif %}
+                            </div>
+                            <div>
+                                {% if transaction.valyuta_turi %}
+                                    {{ transaction.amount }} {{ transaction.valyuta_turi }}
+                                {% else %}
+                                    {{ transaction.amount }} {% trans "sum" %}
+                                {% endif %}
+                            </div>
+                            <div>{{ transaction.hisob }}</div>
+                            <div>{{ transaction.category }}</div>
+                            <div>{{ transaction.description }}</div>
+                            <div>
+                                {% if transaction.pul_turi == 'naqd' %}
+                                    {% trans "Cash" %}
+                                {% elif transaction.pul_turi == 'karta' %}
+                                    {% trans "Card" %}: {{ transaction.karta_nomi }}
+                                {% elif transaction.pul_turi == 'valyuta' %}
+                                    {% trans "Currency" %}: {{ transaction.valyuta_turi }}
+                                {% endif %}
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
 
         <div class="chart-container">
             <canvas id="incomeExpenseChart" class="chart"></canvas>
             <div class="category-expense-container">
-                <h3 style="text-align:center">Oxirgi Amaliyotlar</h3>
+                <h3 style="text-align:center">{% trans "Recent Transactions" %}</h3>
                 {% for transaction in transactions|slice:":10" %}
                     <div class="category-expense">
                         {% if transaction.type == 'IN' %}
@@ -343,7 +382,7 @@
                                 {% if transaction.valyuta_turi %}
                                     {{ transaction.valyuta_turi }}
                                 {% else %}
-                                    so'm
+                                    {% trans "sum" %}
                                 {% endif %}
                             </span>
                         {% else %}
@@ -352,7 +391,7 @@
                                 {% if transaction.valyuta_turi %}
                                     {{ transaction.valyuta_turi }}
                                 {% else %}
-                                    so'm
+                                    {% trans "sum" %}
                                 {% endif %}
                             </span>
                         {% endif %}
@@ -382,9 +421,9 @@
             var chart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Kirim', 'Chiqim'],
+                    labels: ['{% trans "Income" %}', '{% trans "Expense" %}'],
                     datasets: [{
-                        label: 'Summasi',
+                        label: '{% trans "Amount" %}',
                         data: [{{ total_income }}, {{ total_expense }}],
                         backgroundColor: ['#4CAF50', '#FF5733'],
                         borderColor: ['#388E3C', '#C70039'],

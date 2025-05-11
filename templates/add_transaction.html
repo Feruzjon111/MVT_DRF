@@ -1,7 +1,8 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Transaction</title>
+    <title>{% trans "Add Transaction" %}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -10,7 +11,6 @@
             background: linear-gradient(135deg, #87a2e8, #046f5c);
             animation: fadeIn 1s ease-out;
         }
-
         h1 {
             background: linear-gradient(135deg, #459097, #314baa);
             color: white;
@@ -22,7 +22,6 @@
             border-bottom-left-radius: 15px;
             border-bottom-right-radius: 15px;
         }
-
         .container {
             width: 50%;
             margin: 40px auto;
@@ -32,21 +31,17 @@
             border-radius: 15px;
             animation: slideIn 1s ease-out;
         }
-
         form {
             display: flex;
             flex-direction: column;
         }
-
         form p {
             margin: 15px 0;
         }
-
         label {
             font-weight: bold;
             margin-bottom: 5px;
         }
-
         input, select, textarea {
             padding: 12px;
             border: 1px solid #ccc;
@@ -56,14 +51,12 @@
             background-color: #f9f9f9;
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-
         input:focus, select:focus, textarea:focus {
             border-color: #4CAF50;
             box-shadow: 0 0 5px rgba(76, 175, 80, 0.5), inset 0 2px 4px rgba(0, 0, 0, 0.1);
             outline: none;
             background-color: #eafbea;
         }
-
         button {
             padding: 12px;
             background-color: #4CAF50;
@@ -75,19 +68,16 @@
             transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-
         button:hover {
             background-color: #45a049;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
-
         button:active {
             background-color: #388E3C;
             transform: scale(0.95);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-
         a {
             display: inline-block;
             margin: 20px 0;
@@ -100,37 +90,32 @@
             transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-
         a:hover {
             background-color: #45a049;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
-
         a:active {
             background-color: #388E3C;
             transform: scale(0.95);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         @keyframes slideIn {
             from { transform: translateY(-20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-
         #karta-div, #valyuta-div {
             margin-top: 15px;
         }
     </style>
 </head>
 <body>
-    <h1>Add Transaction</h1>
+    <h1>{% trans "Add Transaction" %}</h1>
     <div class="container">
         <form method="post">
             {% csrf_token %}
@@ -151,32 +136,31 @@
             </div>
 
             {{ form.description.label_tag }} {{ form.description }}
-            <button type="submit">Add</button>
+            <button type="submit">{% trans "Add" %}</button>
         </form>
 
         {% if error_message %}
             <p style="color: red;">{{ error_message }}</p>
         {% endif %}
-        <a href="{% url 'index' %}">Back</a>
-    </div>
 
+        <a href="{% url 'index' %}">{% trans "Back" %}</a>
+    </div>
     <script>
         const kirimCategories = {
-            'oylik': 'Oylik ish haqi',
-            'avans': 'Avans',
-            'kunlik': 'Kunlik ish',
-            'sovga': 'Sovg‘a',
-            'xizmat': 'Xizmat haqi',
-            'boshqa_kirim': 'Boshqa kirim',
+            'oylik': '{% trans "Oylik ish haqi" %}',
+            'avans': '{% trans "Avans" %}',
+            'kunlik': '{% trans "Kunlik ish" %}',
+            'sovga': '{% trans "Sovg‘a" %}',
+            'xizmat': '{% trans "Xizmat haqi" %}',
+            'boshqa_kirim': '{% trans "Boshqa kirim" %}',
         };
-
         const chiqimCategories = {
-            'ovqat': 'Ovqat',
-            'yoqilg‘i': 'Yoqilg‘i',
-            'ijara': 'Ijara haqi',
-            'internet': 'Internet/xizmatlar',
-            'sotib_olish': 'Sotib olish',
-            'boshqa_chiqim': 'Boshqa chiqim',
+            'ovqat': '{% trans "Ovqat" %}',
+            'yoqilg‘i': '{% trans "Yoqilg‘i" %}',
+            'ijara': '{% trans "Ijara haqi" %}',
+            'internet': '{% trans "Internet/xizmatlar" %}',
+            'sotib_olish': '{% trans "Sotib olish" %}',
+            'boshqa_chiqim': '{% trans "Boshqa chiqim" %}',
         };
 
         const typeSelect = document.getElementById('typeSelect');
@@ -189,7 +173,6 @@
             const selectedType = typeSelect.value;
             const categories = selectedType === 'IN' ? kirimCategories : chiqimCategories;
             categorySelect.innerHTML = '';
-
             for (const [value, label] of Object.entries(categories)) {
                 const option = document.createElement('option');
                 option.value = value;

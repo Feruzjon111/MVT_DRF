@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.dateparse import parse_date
@@ -7,6 +7,12 @@ from .models import Transaction
 from .forms import TransactionForm, DateRangeForm
 from datetime import timedelta
 from django.utils.timezone import now
+from django.utils.translation import gettext as _
+
+def my_view(request):
+    greeting = _("Welcome to your income and expense tracker.")
+    return HttpResponse(greeting)
+
 
 @login_required
 def index(request):

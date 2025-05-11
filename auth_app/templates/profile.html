@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
 
 {% block content %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
-    <title>Foydalanuvchi Profili</title>
+    <title>{% trans "Foydalanuvchi Profili" %}</title>
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
@@ -83,17 +83,17 @@
 </head>
 <body>
 <div class="container">
-    <h1>Profilingiz</h1>
-    <p><span class="label">Ism:</span> {{ user.first_name }}</p>
-    <p><span class="label">Familiya:</span> {{ user.last_name }}</p>
-    <p><span class="label">Email:</span> {{ user.email }}</p>
-    <p><span class="label">Telefon:</span> {{ user.phone }}</p>
-    <p><span class="label">Ro'yxatdan o'tgan sana:</span> {{ user.date_joined|date:"Y-m-d H:i" }}</p>
+    <h1>{% trans "Profilingiz" %}</h1>
+    <p><span class="label">{% trans "Ism:" %}</span> {{ user.first_name }}</p>
+    <p><span class="label">{% trans "Familiya:" %}</span> {{ user.last_name }}</p>
+    <p><span class="label">{% trans "Email:" %}</span> {{ user.email }}</p>
+    <p><span class="label">{% trans "Telefon:" %}</span> {{ user.phone }}</p>
+    <p><span class="label">{% trans "Ro'yxatdan o'tgan sana:" %}</span> {{ user.date_joined|date:"Y-m-d H:i" }}</p>
 
     <div class="actions">
-        <a href="{% url 'update_profile' %}">Profilni yangilash</a>
-        <a href="{% url 'logout' %}">Chiqish</a>
-        <a href="{% url 'index' %}">Bosh sahifa</a>
+        <a href="{% url 'auth_app:update_profile' %}">{% trans "Profilni yangilash" %}</a>
+        <a href="{% url 'auth_app:logout' %}">{% trans "Chiqish" %}</a>
+        <a href="{% url 'index' %}">{% trans "Bosh sahifa" %}</a>
     </div>
 </div>
 </body>

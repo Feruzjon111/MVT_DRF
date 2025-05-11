@@ -1,9 +1,10 @@
+{% load static i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Profile</title>
+    <title>{% trans "Update Profile" %}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -105,13 +106,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>Update Profile</h1>
+        <h1>{% trans "Update Profile" %}</h1>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Update</button>
+            <button type="submit">{% trans "Update" %}</button>
         </form>
-        <a href="{% url 'profile' %}" class="back-link">Back to Profile</a>
+        <a href="{% url 'auth_app:profile' %}" class="back-link">{% trans "Back to Profile" %}</a>
     </div>
 </body>
 </html>

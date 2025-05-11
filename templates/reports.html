@@ -1,7 +1,8 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Reports</title>
+    <title>{% trans "Reports" %}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -175,32 +176,32 @@
     </style>
 </head>
 <body>
-    <h1>Hisobotlar</h1>
+    <h1>{% trans "Reports" %}</h1>
     <div class="container">
         <div class="summary-box" id="summaryBox">
-            <p>Umumiy Kirim: {{ total_income }}</p>
-            <p>Umumiy Chiqim: {{ total_expense }}</p>
-            <p>Balance: {{ balance }}</p>
+            <p>{% trans "Total Income" %}: {{ total_income }}</p>
+            <p>{% trans "Total Expense" %}: {{ total_expense }}</p>
+            <p>{% trans "Balance" %}: {{ balance }}</p>
 
             <div class="btn-container">
-                <button onclick="fetchStats('daily')">Kunlik</button>
-                <button onclick="fetchStats('weekly')">Haftalik</button>
-                <button onclick="fetchStats('monthly')">Oylik</button>
+                <button onclick="fetchStats('daily')">{% trans "Daily" %}</button>
+                <button onclick="fetchStats('weekly')">{% trans "Weekly" %}</button>
+                <button onclick="fetchStats('monthly')">{% trans "Monthly" %}</button>
             </div>
 
             <div id="dailyStats" class="hidden">
-                <h2>Kunlik Hisob</h2>
-                <p>Kirim: <span id="dailyIncome"></span></p>
-                <p>Chiqim: <span id="dailyExpense"></span></p>
+                <h2>{% trans "Daily Report" %}</h2>
+                <p>{% trans "Income" %}: <span id="dailyIncome"></span></p>
+                <p>{% trans "Expense" %}: <span id="dailyExpense"></span></p>
                 <div class="transaction-list" id="dailyTransactions">
-                    <h3>So'nggi Kunlik Tranzaksiyalar:</h3>
+                    <h3>{% trans "Last Daily Transactions" %}:</h3>
                     <table>
                         <thead>
                             <tr>
-                                <th>Tur</th>
-                                <th>Summa</th>
-                                <th>Tavsif</th>
-                                <th>Sana</th>
+                                <th>{% trans "Type" %}</th>
+                                <th>{% trans "Amount" %}</th>
+                                <th>{% trans "Description" %}</th>
+                                <th>{% trans "Date" %}</th>
                             </tr>
                         </thead>
                         <tbody id="dailyTransactionTable">
@@ -210,18 +211,18 @@
             </div>
 
             <div id="weeklyStats" class="hidden">
-                <h2>Haftalik Hisob</h2>
-                <p>Kirim: <span id="weeklyIncome"></span></p>
-                <p>Chiqim: <span id="weeklyExpense"></span></p>
+                <h2>{% trans "Weekly Report" %}</h2>
+                <p>{% trans "Income" %}: <span id="weeklyIncome"></span></p>
+                <p>{% trans "Expense" %}: <span id="weeklyExpense"></span></p>
                 <div class="transaction-list" id="weeklyTransactions">
-                    <h3>So'nggi Haftalik Tranzaksiyalar:</h3>
+                    <h3>{% trans "Last Weekly Transactions" %}:</h3>
                     <table>
                         <thead>
                             <tr>
-                                <th>Tur</th>
-                                <th>Summa</th>
-                                <th>Tavsif</th>
-                                <th>Sana</th>
+                                <th>{% trans "Type" %}</th>
+                                <th>{% trans "Amount" %}</th>
+                                <th>{% trans "Description" %}</th>
+                                <th>{% trans "Date" %}</th>
                             </tr>
                         </thead>
                         <tbody id="weeklyTransactionTable">
@@ -231,18 +232,18 @@
             </div>
 
             <div id="monthlyStats" class="hidden">
-                <h2>Oylik Hisob</h2>
-                <p>Kirim: <span id="monthlyIncome"></span></p>
-                <p>Chiqim: <span id="monthlyExpense"></span></p>
+                <h2>{% trans "Monthly Report" %}</h2>
+                <p>{% trans "Income" %}: <span id="monthlyIncome"></span></p>
+                <p>{% trans "Expense" %}: <span id="monthlyExpense"></span></p>
                 <div class="transaction-list" id="monthlyTransactions">
-                    <h3>So'nggi Oylik Tranzaksiyalar:</h3>
+                    <h3>{% trans "Last Monthly Transactions" %}:</h3>
                     <table>
                         <thead>
                             <tr>
-                                <th>Tur</th>
-                                <th>Summa</th>
-                                <th>Tavsif</th>
-                                <th>Sana</th>
+                                <th>{% trans "Type" %}</th>
+                                <th>{% trans "Amount" %}</th>
+                                <th>{% trans "Description" %}</th>
+                                <th>{% trans "Date" %}</th>
                             </tr>
                         </thead>
                         <tbody id="monthlyTransactionTable">
@@ -252,7 +253,7 @@
             </div>
         </div>
 
-        <a href="{% url 'index' %}" class="button">Back</a>
+        <a href="{% url 'index' %}" class="button">{% trans "Back" %}</a>
     </div>
 
     <script>
@@ -278,9 +279,9 @@
                         data.daily_transactions.forEach(transaction => {
                             let row = document.createElement('tr');
                             row.innerHTML = `
-                                <td>${transaction.type === 'IN' ? 'Kirim' : 'Chiqim'}</td>
+                                <td>${transaction.type === 'IN' ? '{% trans "Income" %}' : '{% trans "Expense" %}'}</td>
                                 <td>${transaction.amount}</td>
-                                <td>${transaction.description || 'N/A'}</td>
+                                <td>${transaction.description || '{% trans "N/A" %}'}</td>
                                 <td>${transaction.date}</td>
                             `;
                             transactionTable.appendChild(row);
@@ -296,9 +297,9 @@
                         data.weekly_transactions.forEach(transaction => {
                             let row = document.createElement('tr');
                             row.innerHTML = `
-                                <td>${transaction.type === 'IN' ? 'Kirim' : 'Chiqim'}</td>
+                                <td>${transaction.type === 'IN' ? '{% trans "Income" %}' : '{% trans "Expense" %}'}</td>
                                 <td>${transaction.amount}</td>
-                                <td>${transaction.description || 'N/A'}</td>
+                                <td>${transaction.description || '{% trans "N/A" %}'}</td>
                                 <td>${transaction.date}</td>
                             `;
                             transactionTable.appendChild(row);
@@ -314,9 +315,9 @@
                         data.monthly_transactions.forEach(transaction => {
                             let row = document.createElement('tr');
                             row.innerHTML = `
-                                <td>${transaction.type === 'IN' ? 'Kirim' : 'Chiqim'}</td>
+                                <td>${transaction.type === 'IN' ? '{% trans "Income" %}' : '{% trans "Expense" %}'}</td>
                                 <td>${transaction.amount}</td>
-                                <td>${transaction.description || 'N/A'}</td>
+                                <td>${transaction.description || '{% trans "N/A" %}'}</td>
                                 <td>${transaction.date}</td>
                             `;
                             transactionTable.appendChild(row);

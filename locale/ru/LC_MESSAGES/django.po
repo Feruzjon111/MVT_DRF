@@ -1,0 +1,435 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PAKET VERSIYASI\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-11 11:32+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Welcome to your income and expense tracker."
+msgstr "Добро пожаловать в ваш трекер доходов и расходов."
+
+msgid "Choose your preferred language"
+msgstr "Выберите предпочитаемый язык"
+
+msgid "Messages"
+msgstr "Сообщения"
+
+msgid "Site Maps"
+msgstr "Карта сайта"
+
+msgid "Static Files"
+msgstr "Статические файлы"
+
+msgid "Syndication"
+msgstr "Синдикация"
+
+msgid "…"
+msgstr "…"
+
+msgid "That page number is not an integer"
+msgstr "Этот номер страницы не является целым числом."
+
+msgid "That page number is less than 1"
+msgstr "Номер страницы меньше 1."
+
+msgid "That page contains no results"
+msgstr "На этой странице нет результатов."
+
+msgid "Enter a valid value."
+msgstr "Введите правильное значение."
+
+msgid "Enter a valid URL."
+msgstr "Введите правильный URL."
+
+msgid "Enter a valid integer."
+msgstr "Введите правильное целое число."
+
+msgid "Enter a valid email address."
+msgstr "Введите правильный адрес электронной почты."
+
+msgid ""
+"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+msgstr "Введите правильный 'slug', состоящий из букв, цифр, подчеркиваний или дефисов."
+
+msgid ""
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
+msgstr "Введите правильный 'slug', состоящий из букв Unicode, цифр, подчеркиваний или дефисов."
+
+msgid "Enter a valid IPv4 address."
+msgstr "Введите правильный IPv4 адрес."
+
+msgid "Enter a valid IPv6 address."
+msgstr "Введите правильный IPv6 адрес."
+
+msgid "Enter a valid IPv4 or IPv6 address."
+msgstr "Введите правильный IPv4 или IPv6 адрес."
+
+msgid "Enter only digits separated by commas."
+msgstr "Введите только цифры, разделенные запятыми."
+
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr "Убедитесь, что это значение равно %(limit_value)s (текущее значение: %(show_value)s)."
+
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr "Убедитесь, что это значение меньше или равно %(limit_value)s."
+
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr "Убедитесь, что это значение больше или равно %(limit_value)s."
+
+msgid "Ensure this value is a multiple of step size %(limit_value)s."
+msgstr "Убедитесь, что это значение кратно шагу %(limit_value)s."
+
+msgid ""
+"Ensure this value is a multiple of step size %(limit_value)s, starting from "
+"%(offset)s, e.g. %(offset)s, %(valid_value1)s, %(valid_value2)s, and so on."
+msgstr "Убедитесь, что это значение кратно шагу %(limit_value)s, начиная с %(offset)s, например, %(offset)s, %(valid_value1)s, %(valid_value2)s и так далее."
+
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] "Убедитесь, что это значение содержит хотя бы %(limit_value)d символов (текущее значение: %(show_value)d)."
+msgstr[1] "Убедитесь, что это значение содержит хотя бы %(limit_value)d символов (текущее значение: %(show_value)d)."
+
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] "Убедитесь, что это значение содержит не более %(limit_value)d символов (текущее значение: %(show_value)d)."
+msgstr[1] "Убедитесь, что это значение содержит не более %(limit_value)d символов (текущее значение: %(show_value)d)."
+
+msgid "Enter a number."
+msgstr "Введите число."
+
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgid_plural "Ensure that there are no more than %(max)s digits in total."
+msgstr[0] "Убедитесь, что всего не больше %(max)s цифр."
+msgstr[1] "Убедитесь, что всего не больше %(max)s цифр."
+
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] "Убедитесь, что после запятой не более %(max)s знаков."
+msgstr[1] "Убедитесь, что после запятой не более %(max)s знаков."
+
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[0] "Убедитесь, что перед десятичной точкой не более %(max)s цифр."
+msgstr[1] "Убедитесь, что перед десятичной точкой не более %(max)s цифр."
+
+msgid ""
+"File extension “%(extension)s” is not allowed. Allowed extensions are: "
+"%(allowed_extensions)s."
+msgstr "Расширение файла “%(extension)s” не разрешено. Разрешенные расширения: %(allowed_extensions)s."
+
+msgid "Null characters are not allowed."
+msgstr "Нулевые символы не допускаются."
+
+msgid "and"
+msgstr "и"
+
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr "Запись с таким %(field_labels)s уже существует в модели %(model_name)s."
+
+msgid "Constraint “%(name)s” is violated."
+msgstr "Нарушено ограничение “%(name)s”."
+
+msgid "Value %(value)r is not a valid choice."
+msgstr "Значение %(value)r является неверным вариантом."
+
+msgid "This field cannot be null."
+msgstr "Это поле не может быть пустым."
+
+msgid "This field cannot be blank."
+msgstr "Это поле не может быть пустым."
+
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr "Запись с таким %(field_label)s уже существует в модели %(model_name)s."
+
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr "%(field_label)s должен быть уникальным для %(date_field_label)s %(lookup_type)s."
+
+msgid "Field of type: %(field_type)s"
+msgstr "Поле типа: %(field_type)s"
+
+msgid "“%(value)s” value must be either True or False."
+msgstr "Значение “%(value)s” должно быть либо True, либо False."
+
+msgid "“%(value)s” value must be either True, False, or None."
+msgstr "Значение “%(value)s” должно быть либо True, False, либо None."
+
+msgid "Boolean (Either True or False)"
+msgstr "Логическое (True или False)"
+
+msgid "String (up to %(max_length)s)"
+msgstr "Строка (до %(max_length)s)"
+
+msgid "String (unlimited)"
+msgstr "Строка (неограниченная)"
+
+msgid "Comma-separated integers"
+msgstr "Целые числа, разделенные запятыми"
+
+msgid ""
+"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr "Значение “%(value)s” имеет неверный формат даты. Оно должно быть в формате YYYY-MM-DD."
+
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr "Значение “%(value)s” имеет правильный формат (YYYY-MM-DD), но это недопустимая дата."
+
+msgid "Date (without time)"
+msgstr "Дата (без времени)"
+
+msgid ""
+"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
+"uuuuuu]][TZ] format."
+msgstr "Значение “%(value)s” имеет неверный формат. Оно должно быть в формате YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]."
+
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr "Значение “%(value)s” имеет правильный формат (YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]), но это недопустимая дата/время."
+
+msgid "Date and time"
+msgstr "Дата и время"
+
+msgid "Finance App"
+msgstr "Финансовое приложение"
+
+msgid "Income-Expense"
+msgstr "Доход-Расход"
+
+msgid "Profile"
+msgstr "Профиль"
+
+msgid "Change"
+msgstr "Изменить"
+
+msgid "Balance"
+msgstr "Баланс"
+
+msgid "sum"
+msgstr "сум"
+
+msgid "Add Transaction"
+msgstr "Добавить транзакцию"
+
+msgid "Reports"
+msgstr "Отчёты"
+
+msgid "Date Range Report"
+msgstr "Отчёт по диапазону дат"
+
+msgid "Income"
+msgstr "Доход"
+
+msgid "Expense"
+msgstr "Расход"
+
+msgid "All"
+msgstr "Все"
+
+msgid "Cash"
+msgstr "Наличные"
+
+msgid "Card"
+msgstr "Карта"
+
+msgid "Currency"
+msgstr "Валюта"
+
+msgid "Recent Transactions"
+msgstr "Последние транзакции"
+
+msgid "Amount"
+msgstr "Сумма"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Category"
+msgstr "Категория"
+
+msgid "Payment Method"
+msgstr "Способ оплаты"
+
+msgid "Card Name"
+msgstr "Название карты"
+
+msgid "Currency Type"
+msgstr "Тип валюты"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Dashboard"
+msgstr "Панель управления"
+
+msgid "Profilingiz"
+msgstr "Ваш профиль"
+
+msgid "Ism:"
+msgstr "Имя:"
+
+msgid "Familiya:"
+msgstr "Фамилия:"
+
+msgid "Email:"
+msgstr "Электронная почта:"
+
+msgid "Telefon:"
+msgstr "Телефон:"
+
+msgid "Ro'yxatdan o'tgan sana:"
+msgstr "Дата регистрации:"
+
+msgid "Profilni yangilash"
+msgstr "Обновить профиль"
+
+msgid "Chiqish"
+msgstr "Выйти"
+
+msgid "Bosh sahifa"
+msgstr "Главная"
+
+
+msgid "Update Profile"
+msgstr "Обновить профиль"
+
+msgid "Update"
+msgstr "Обновить"
+
+msgid "Back to Profile"
+msgstr "Назад к профилю"
+
+msgid "Total Income"
+msgstr "Общий доход"
+
+msgid "Total Expense"
+msgstr "Общие расходы"
+
+msgid "Daily"
+msgstr "Ежедневно"
+
+msgid "Weekly"
+msgstr "Еженедельно"
+
+msgid "Monthly"
+msgstr "Ежемесячно"
+
+msgid "Daily Report"
+msgstr "Ежедневный отчет"
+
+
+msgid "Recent Daily Transactions"
+msgstr "Недавние ежедневные транзакции"
+
+
+msgid "Weekly Report"
+msgstr "Еженедельный отчет"
+
+msgid "Recent Weekly Transactions"
+msgstr "Недавние еженедельные транзакции"
+
+msgid "Monthly Report"
+msgstr "Ежемесячный отчет"
+
+msgid "Recent Monthly Transactions"
+msgstr "Недавние ежемесячные транзакции"
+
+
+msgid "Last Monthly Transactions"
+msgstr "Последние ежемесячные транзакции"
+
+msgid "Last Daily Transactions"
+msgstr "Последние ежедневные транзакции"
+
+
+msgid "Last Weekly Transactions"
+msgstr "Последние еженедельные транзакции"
+
+
+msgid "No income transactions found in the selected date range."
+msgstr "За выбранный период не найдено поступлений."
+
+msgid "No expense transactions found in the selected date range."
+msgstr "За выбранный период не найдено расходов."
+
+
+msgid "Income/Expense by Date Range"
+msgstr "Доходы/Расходы за выбранный период"
+
+msgid "Start Date:"
+msgstr "Дата начала:"
+
+msgid "End Date:"
+msgstr "Дата окончания:"
+
+msgid "Login to the system"
+msgstr "Войти в систему"
+
+msgid "Phone number or email"
+msgstr "Номер телефона или email"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Login"
+msgstr "Войти"
+
+msgid "Don't have an account? Register now"
+msgstr "Нет аккаунта? Зарегистрируйтесь сейчас"
+
+msgid "Sign up"
+msgstr "Зарегистрироваться"
+
+msgid "Register in the system"
+msgstr "Зарегистрироваться в системе"
+
+msgid "First Name"
+msgstr "Имя"
+
+msgid "Last Name"
+msgstr "Фамилия"
+
+msgid "Email Address"
+msgstr "Адрес электронной почты"
+
+msgid "Phone Number"
+msgstr "Номер телефона"
+
+msgid "Confirm Password"
+msgstr "Подтвердите пароль"
+
+msgid "Sign Up"
+msgstr "Зарегистрироваться"
+
+msgid "Already have an account?"
+msgstr "Уже есть аккаунт?"
+

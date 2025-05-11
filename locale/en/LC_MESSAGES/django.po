@@ -1,0 +1,330 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-11 11:32+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: English <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Enter a valid integer."
+msgstr "Enter a valid integer."
+
+msgid "Enter a valid email address."
+msgstr "Enter a valid email address."
+
+msgid "Enter a valid IPv4 address."
+msgstr "Enter a valid IPv4 address."
+
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr "Ensure this value is less than or equal to %(limit_value)s."
+
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr "Ensure this value is greater than or equal to %(limit_value)s."
+
+msgid "Ensure this value is a multiple of step size %(limit_value)s."
+msgstr "Ensure this value is a multiple of step size %(limit_value)s."
+
+msgid "Enter a number."
+msgstr "Enter a number."
+
+msgid "Null characters are not allowed."
+msgstr "Null characters are not allowed."
+
+msgid "and"
+msgstr "and"
+
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr "%(model_name)s with this %(field_labels)s already exists."
+
+msgid "Constraint “%(name)s” is violated."
+msgstr "Constraint “%(name)s” is violated."
+
+msgid "Value %(value)r is not a valid choice."
+msgstr "Value %(value)r is not a valid choice."
+
+msgid "This field cannot be null."
+msgstr "This field cannot be null."
+
+msgid "This field cannot be blank."
+msgstr "This field cannot be blank."
+
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr "%(model_name)s with this %(field_label)s already exists."
+
+msgid "%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr "%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+
+msgid "Field of type: %(field_type)s"
+msgstr "Field of type: %(field_type)s"
+
+msgid "“%(value)s” value must be either True or False."
+msgstr "“%(value)s” value must be either True or False."
+
+msgid "“%(value)s” value must be either True, False, or None."
+msgstr "“%(value)s” value must be either True, False, or None."
+
+msgid "Boolean (Either True or False)"
+msgstr "Boolean (Either True or False)"
+
+msgid "String (up to %(max_length)s)"
+msgstr "String (up to %(max_length)s)"
+
+msgid "String (unlimited)"
+msgstr "String (unlimited)"
+
+msgid "Comma-separated integers"
+msgstr "Comma-separated integers"
+
+msgid "“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD format."
+msgstr "“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD format."
+
+msgid "“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid date."
+msgstr "“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid date."
+
+msgid "Date (without time)"
+msgstr "Date (without time)"
+
+msgid "“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."
+msgstr "“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."
+
+msgid "“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]) but it is an invalid date/time."
+msgstr "“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]) but it is an invalid date/time."
+
+msgid "Date and time"
+msgstr "Date and time"
+
+msgid "Finance App"
+msgstr "Finance App"
+
+msgid "Income-Expense"
+msgstr "Income-Expense"
+
+msgid "Profile"
+msgstr "Profile"
+
+msgid "Change"
+msgstr "Change"
+
+msgid "Balance"
+msgstr "Balance"
+
+msgid "sum"
+msgstr "sum"
+
+msgid "Add Transaction"
+msgstr "Add Transaction"
+
+msgid "Reports"
+msgstr "Reports"
+
+msgid "Date Range Report"
+msgstr "Date Range Report"
+
+msgid "Income"
+msgstr "Income"
+
+msgid "Expense"
+msgstr "Expense"
+
+msgid "All"
+msgstr "All"
+
+msgid "Cash"
+msgstr "Cash"
+
+msgid "Card"
+msgstr "Card"
+
+msgid "Currency"
+msgstr "Currency"
+
+msgid "Recent Transactions"
+msgstr "Recent Transactions"
+
+msgid "Amount"
+msgstr "Amount"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Category"
+msgstr "Category"
+
+msgid "Payment Method"
+msgstr "Payment Method"
+
+msgid "Card Name"
+msgstr "Card Name"
+
+msgid "Currency Type"
+msgstr "Currency Type"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Add"
+msgstr "Add"
+
+msgid "Back"
+msgstr "Back"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Choose your preferred language"
+msgstr "Choose your preferred language"
+
+msgid "Profilingiz"
+msgstr "Your profile"
+
+msgid "Ism:"
+msgstr "First name:"
+
+msgid "Familiya:"
+msgstr "Last name:"
+
+msgid "Email:"
+msgstr "Email:"
+
+msgid "Telefon:"
+msgstr "Phone:"
+
+msgid "Ro'yxatdan o'tgan sana:"
+msgstr "Registration date:"
+
+msgid "Profilni yangilash"
+msgstr "Update profile"
+
+msgid "Chiqish"
+msgstr "Logout"
+
+msgid "Bosh sahifa"
+msgstr "Homepage"
+
+msgid "Update Profile"
+msgstr "Update Profile"  # English
+
+msgid "Update"
+msgstr "Update"  # English
+
+msgid "Back to Profile"
+msgstr "Back to Profile"
+
+
+msgid "Total Income"
+msgstr "Total Income"
+
+msgid "Total Expense"
+msgstr "Total Expense"
+
+msgid "Daily"
+msgstr "Daily"
+
+msgid "Weekly"
+msgstr "Weekly"
+
+msgid "Monthly"
+msgstr "Monthly"
+
+msgid "Daily Report"
+msgstr "Daily Report"
+
+
+msgid "Recent Daily Transactions"
+msgstr "Recent Daily Transactions"
+
+
+msgid "Weekly Report"
+msgstr "Weekly Report"
+
+msgid "Recent Weekly Transactions"
+msgstr "Recent Weekly Transactions"
+
+msgid "Monthly Report"
+msgstr "Monthly Report"
+
+msgid "Recent Monthly Transactions"
+msgstr "Recent Monthly Transactions"
+
+msgid "Last Monthly Transactions"
+msgstr "Last Monthly Transactions"
+
+
+msgid "Last Daily Transactions"
+msgstr "Last Daily Transactions"
+
+msgid "Last Weekly Transactions"
+msgstr "Last Weekly Transactions"
+
+msgid "No income transactions found in the selected date range."
+msgstr "No income transactions found in the selected date range."
+
+msgid "No expense transactions found in the selected date range."
+msgstr "No expense transactions found in the selected date range."
+
+
+msgid "Income/Expense by Date Range"
+msgstr "Income/Expense by Date Range"
+
+msgid "Start Date:"
+msgstr "Start Date:"
+
+msgid "End Date:"
+msgstr "End Date:"
+
+msgid "Login to the system"
+msgstr "Login to the system"
+
+msgid "Phone number or email"
+msgstr "Phone number or email"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Don't have an account? Register now"
+msgstr "Don't have an account? Register now"
+
+msgid "Sign up"
+msgstr "Sign up"
+
+msgid "Register in the system"
+msgstr "Register in the system"
+
+msgid "First Name"
+msgstr "First Name"
+
+msgid "Last Name"
+msgstr "Last Name"
+
+msgid "Email Address"
+msgstr "Email Address"
+
+msgid "Phone Number"
+msgstr "Phone Number"
+
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
+msgid "Sign Up"
+msgstr "Sign Up"
+
+msgid "Already have an account?"
+msgstr "Already have an account?"
+
+
+

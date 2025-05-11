@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
-
+{% load static i18n %}
 {% block content %}
 <form action="" method="post" class="w-[300px] flex flex-col gap-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
     {% csrf_token %}
-    <h1 class="text-2xl text-center">Tizimga kirish</h1>
+    <h1 class="text-2xl text-center">{% trans "Login to the system" %}</h1>
 
     <input
         type="text"
         name="identifier"
         class="w-full p-2 rounded border border-slate-500"
-        placeholder="Telefon raqam yoki email"
+        placeholder="{% trans 'Phone number or email' %}"
         required
         autofocus
     >
@@ -18,17 +18,17 @@
         type="password"
         name="password"
         class="w-full p-2 rounded border border-slate-500"
-        placeholder="Parol"
+        placeholder="{% trans 'Password' %}"
         required
     >
 
     <button class="mt-4 p-2 w-full rounded border border-blue-900 text-blue-900 hover:text-white hover:bg-blue-900 transition">
-        Kirish
+        {% trans 'Login' %}
     </button>
 
     <small class="text-center">
-        Akkauntingiz yo'qmi? Hoziroq
-        <a href="{% url 'register' %}" class="text-blue-900 font-bold">ro'yxatdan o'ting</a>
+        {% trans 'Don\'t have an account? Register now' %}
+        <a href="{% url 'auth_app:register' %}" class="text-blue-900 font-bold">{% trans 'Sign up' %}</a>
     </small>
 </form>
 {% endblock content %}

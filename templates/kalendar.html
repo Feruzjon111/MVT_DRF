@@ -1,7 +1,8 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Transactions by Date Range</title>
+    <title>{% trans "Transactions by Date Range" %}</title>
     <style>
         /* Global Styling */
         body {
@@ -188,7 +189,6 @@
             box-shadow: 0 2px 4px rgb(255, 255, 255);
         }
 
-        /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -228,12 +228,12 @@
     </style>
 </head>
 <body>
-    <h1>Sana oralig'i bo'yicha Kirim/Chiqim</h1>
-    <h2>Balance:
+    <h1>{% trans "Income/Expense by Date Range" %}</h1>
+    <h2>{% trans "Balance" %}:
         {% if balance %}
-            {{ balance }} so'm
+            {{ balance }} {% trans "UZS" %}
         {% else %}
-            0 so'm
+            0 {% trans "UZS" %}
         {% endif %}
     </h2>
 
@@ -241,30 +241,30 @@
         {% csrf_token %}
         <div style="display: flex; gap: 15px; width: 100%;">
             <div style="flex: 1;">
-                <label for="start_date">Start Date:</label>
+                <label for="start_date">{% trans "Start Date:" %}</label>
                 <input type="date" id="start_date" name="start_date" value="{{ request.GET.start_date }}">
             </div>
             <div style="flex: 1;">
-                <label for="end_date">End Date:</label>
+                <label for="end_date">{% trans "End Date:" %}</label>
                 <input type="date" id="end_date" name="end_date" value="{{ request.GET.end_date }}">
             </div>
         </div>
-        <button type="submit">Filter</button>
+        <button type="submit">{% trans "Filter" %}</button>
     </form>
 
     <div class="button-container">
-        <button onclick="toggleSection('income')">Kirim</button>
-        <button onclick="toggleSection('expense')">Chiqim</button>
+        <button onclick="toggleSection('income')">{% trans "Income" %}</button>
+        <button onclick="toggleSection('expense')">{% trans "Expense" %}</button>
     </div>
 
     <div class="container">
         <div id="income" class="section show">
-            <h2>Kirim</h2>
-            <p class="total-sum">Total Income:
+            <h2>{% trans "Income" %}</h2>
+            <p class="total-sum">{% trans "Total Income" %}:
                 {% if total_income %}
-                    {{ total_income }} so'm
+                    {{ total_income }} {% trans "UZS" %}
                 {% else %}
-                    0 so'm
+                    0 {% trans "UZS" %}
                 {% endif %}
             </p>
             <ul>
@@ -272,37 +272,37 @@
                     {% if transaction.type == 'IN' %}
                         <li>
                             <div class="transaction-detail">
-                                <strong>Date:</strong> {{ transaction.date }}<br>
-                                <strong>Type:</strong> Kirim <br>
-                                <strong>Amount:</strong>
+                                <strong>{% trans "Date" %}:</strong> {{ transaction.date }}<br>
+                                <strong>{% trans "Type" %}:</strong> {% trans "Income" %}<br>
+                                <strong>{% trans "Amount" %}:</strong>
                                 {% if transaction.amount %}
                                     {% if transaction.currency == 'UZS' %}
-                                        {{ transaction.amount }} so'm
+                                        {{ transaction.amount }} {% trans "UZS" %}
                                     {% else %}
                                         {{ transaction.amount }} {{ transaction.currency }}
                                     {% endif %}
                                 {% else %}
-                                    0 so'm
+                                    0 {% trans "UZS" %}
                                 {% endif %}<br>
-                                <strong>Account:</strong> {{ transaction.account }}<br>
-                                <strong>Category:</strong> {{ transaction.category }}<br>
-                                <strong>Description:</strong> {{ transaction.description }}
+                                <strong>{% trans "Account" %}:</strong> {{ transaction.account }}<br>
+                                <strong>{% trans "Category" %}:</strong> {{ transaction.category }}<br>
+                                <strong>{% trans "Description" %}:</strong> {{ transaction.description }}
                             </div>
                         </li>
                     {% endif %}
-                    {% empty %}
-                        <li>Tanlangan sana oralig‘ida hech qanday kirim tranzaksiyalari topilmadi</li>
+                {% empty %}
+                    <li>{% trans "No income transactions found in the selected date range." %}</li>
                 {% endfor %}
             </ul>
         </div>
 
         <div id="expense" class="section">
-            <h2>Chiqim</h2>
-            <p class="total-sum">Total Expense:
+            <h2>{% trans "Expense" %}</h2>
+            <p class="total-sum">{% trans "Total Expense" %}:
                 {% if total_expense %}
-                    {{ total_expense }} so'm
+                    {{ total_expense }} {% trans "UZS" %}
                 {% else %}
-                    0 so'm
+                    0 {% trans "UZS" %}
                 {% endif %}
             </p>
             <ul>
@@ -310,33 +310,33 @@
                     {% if transaction.type == 'OUT' %}
                         <li>
                             <div class="transaction-detail">
-                                <strong>Date:</strong> {{ transaction.date }}<br>
-                                <strong>Type:</strong> Chiqim<br>
-                                <strong>Amount:</strong>
+                                <strong>{% trans "Date" %}:</strong> {{ transaction.date }}<br>
+                                <strong>{% trans "Type" %}:</strong> {% trans "Expense" %}<br>
+                                <strong>{% trans "Amount" %}:</strong>
                                 {% if transaction.amount %}
                                     {% if transaction.currency == 'UZS' %}
-                                        {{ transaction.amount }} so'm
+                                        {{ transaction.amount }} {% trans "UZS" %}
                                     {% else %}
                                         {{ transaction.amount }} {{ transaction.currency }}
                                     {% endif %}
                                 {% else %}
-                                    0 so'm
+                                    0 {% trans "UZS" %}
                                 {% endif %}<br>
-                                <strong>Account:</strong> {{ transaction.account }}<br>
-                                <strong>Category:</strong> {{ transaction.category }}<br>
-                                <strong>Description:</strong> {{ transaction.description }}
+                                <strong>{% trans "Account" %}:</strong> {{ transaction.account }}<br>
+                                <strong>{% trans "Category" %}:</strong> {{ transaction.category }}<br>
+                                <strong>{% trans "Description" %}:</strong> {{ transaction.description }}
                             </div>
                         </li>
                     {% endif %}
-                    {% empty %}
-                        <li>Tanlangan sana oralig‘ida hech qanday chiqim tranzaksiyalari topilmadi</li>
+                {% empty %}
+                    <li>{% trans "No expense transactions found in the selected date range." %}</li>
                 {% endfor %}
             </ul>
         </div>
     </div>
 
     <div class="centered-content">
-        <a href="{% url 'index' %}" class="button">Back</a>
+        <a href="{% url 'index' %}" class="button">{% trans "Back" %}</a>
     </div>
 
     <script>

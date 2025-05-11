@@ -1,5 +1,13 @@
 from django import forms
+from django.http import HttpResponse
+
 from .models import Transaction
+from django.utils.translation import gettext as _
+
+def my_view(request):
+    greeting = _("Welcome to your income and expense tracker.")
+    return HttpResponse(greeting)
+
 
 class TransactionForm(forms.ModelForm):
     date = forms.DateField(
