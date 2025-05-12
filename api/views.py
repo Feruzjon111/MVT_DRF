@@ -4,14 +4,11 @@ import uuid
 from rest_framework import status, permissions
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from django.contrib.auth import login, logout
 from rest_framework.authtoken.models import Token
 from .methods.helper import send_code
 from .models import OTP
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer
-# views.py
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -20,7 +17,6 @@ from .serializers import TransactionSerializer
 
 
 class ListCreateAPI(APIView):
-
     def get(self, request):
         transactions = Transaction.objects.all()
         serializer = TransactionSerializer(transactions, many=True)
@@ -45,14 +41,14 @@ class DetailAPI(APIView):
     def get(self, request, pk):
         transaction = self.get_object(pk)
         if transaction is None:
-            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"detail": "Not found."})
         serializer = TransactionSerializer(transaction)
         return Response(serializer.data)
 
     def put(self, request, pk):
         transaction = self.get_object(pk)
         if transaction is None:
-            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"detail": "Not found."})
 
         serializer = TransactionSerializer(transaction, data=request.data)
         if serializer.is_valid():
@@ -63,7 +59,7 @@ class DetailAPI(APIView):
     def delete(self, request, pk):
         transaction = self.get_object(pk)
         if transaction is None:
-            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"detail": "Not found."})
 
         transaction.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -216,22 +212,22 @@ class Auth(APIView):
         otp = OTP.objects.filter(key=key).first()
 
         if not otp:
-            return Response({"error": "Noto‘g‘ri key"}, status=400)
+            return Response({"error": "Noto‘g‘ri key"})
 
         if otp.is_expire:
-            return Response({"error": "Kod muddati tugagan"}, status=400)
+            return Response({"error": "Kod muddati tugagan"})
 
         if otp.tried >= 3:
             otp.is_expire = True
             otp.save()
-            return Response({"error": "Juda ko‘p urinish"}, status=400)
+            return Response({"error": "Juda ko‘p urinish"})
 
         if not str(code) in otp.key:
             otp.tried += 1
             otp.save()
-            return Response({"error": "Kod noto‘g‘ri"}, status=400)
+            return Response({"error": "Kod noto‘g‘ri"})
 
         otp.is_conf = True
         otp.save()
-        return Response({"message": "Kod tasdiqlandi!"}, status=200)
+        return Response({"message": "Kod tasdiqlandi!"})
 
