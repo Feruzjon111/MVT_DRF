@@ -88,9 +88,61 @@ def index(request):
 def add_transaction(request):
     user = request.user
     transactions = Transaction.objects.filter(user=user)
-    total_income = transactions.filter(type='IN').aggregate(Sum('amount'))['amount__sum'] or 0
-    total_expense = transactions.filter(type='OUT').aggregate(Sum('amount'))['amount__sum'] or 0
+    total_income = 0
+    total_expense = 0
+
+    income_transactions = transactions.filter(type='IN')
+    for transaction in income_transactions:
+        if transaction.valyuta_turi == 'USD':
+            total_income += transaction.amount * 13000
+        elif transaction.valyuta_turi == 'EUR':
+            total_income += transaction.amount * 14500
+        elif transaction.valyuta_turi == 'RUB':
+            total_income += transaction.amount * 160
+        else:
+            total_income += transaction.amount
+
+    expense_transactions = transactions.filter(type='OUT')
+    for transaction in expense_transactions:
+        if transaction.valyuta_turi == 'USD':
+            total_expense += transaction.amount * 13000
+        elif transaction.valyuta_turi == 'EUR':
+            total_expense += transaction.amount * 14500
+        elif transaction.valyuta_turi == 'RUB':
+            total_expense += transaction.amount * 160
+        else:
+            total_expense += transaction.amount
+
     balance = total_income - total_expense
+
+    category_expenses = (
+        Transaction.objects
+        .filter(user=user, type='OUT')
+        .values('category', 'valyuta_turi')
+        .annotate(total_amount=Sum('amount'))
+        .order_by('category')
+    )
+
+    lst = []
+    for expense in category_expenses:
+        if expense['valyuta_turi'] == 'USD':
+            exchange_rate = 13000
+            total_amount_in_som = expense['total_amount'] * exchange_rate
+        elif expense['valyuta_turi'] == 'EUR':
+            exchange_rate = 14500
+            total_amount_in_som = expense['total_amount'] * exchange_rate
+        elif expense['valyuta_turi'] == 'RUB':
+            exchange_rate = 160
+            total_amount_in_som = expense['total_amount'] * exchange_rate
+        elif expense['valyuta_turi'] == 'Karta':
+            total_amount_in_som = expense['total_amount']
+        else:
+            total_amount_in_som = expense['total_amount']
+        lst.append({
+            'category': expense['category'],
+            'total_amount_in_som': total_amount_in_som
+        })
+
 
     if request.method == 'POST':
         form = TransactionForm(request.POST)
@@ -103,7 +155,17 @@ def add_transaction(request):
             return redirect('index')
     else:
         form = TransactionForm()
-    return render(request, 'add_transaction.html', {'form': form})
+
+    context = {
+        'transactions': transactions,
+        'total_income': total_income,
+        'total_expense': total_expense,
+        'balance': balance,
+        'category_expenses': lst,
+        'form': form,
+    }
+
+    return render(request, 'add_transaction.html', context)
 
 
 @login_required

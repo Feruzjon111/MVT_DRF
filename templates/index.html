@@ -235,6 +235,60 @@
             from { transform: translateY(-20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
+        @media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .info-container,
+    .chart-container {
+        width: 100%;
+        margin: 10px 0;
+        padding: 15px;
+    }
+
+    .transaction-detail {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .transaction-detail div {
+        text-align: left;
+        width: 100%;
+    }
+
+    .language-form,
+    .profile-link {
+        position: static;
+        margin: 10px auto;
+    }
+
+    .tab {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .button {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin: 10px auto;
+    }
+
+    .category-expense {
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 14px;
+    }
+
+    .category-expense span {
+        width: 100%;
+    }
+}
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
