@@ -84,36 +84,39 @@ def index(request):
     return render(request, 'index.html', context)
 
 
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from django.db.models import Sum
+from .models import Transaction
+from .forms import TransactionForm
+
 @login_required
 def add_transaction(request):
     user = request.user
     transactions = Transaction.objects.filter(user=user)
-    total_income = 0
-    total_expense = 0
-
     income_transactions = transactions.filter(type='IN')
+    expense_transactions = transactions.filter(type='OUT')
+
+    balance = 0
     for transaction in income_transactions:
         if transaction.valyuta_turi == 'USD':
-            total_income += transaction.amount * 13000
+            balance += transaction.amount * 13000
         elif transaction.valyuta_turi == 'EUR':
-            total_income += transaction.amount * 14500
+            balance += transaction.amount * 14500
         elif transaction.valyuta_turi == 'RUB':
-            total_income += transaction.amount * 160
+            balance += transaction.amount * 160
         else:
-            total_income += transaction.amount
+            balance += transaction.amount
 
-    expense_transactions = transactions.filter(type='OUT')
     for transaction in expense_transactions:
         if transaction.valyuta_turi == 'USD':
-            total_expense += transaction.amount * 13000
+            balance -= transaction.amount * 13000
         elif transaction.valyuta_turi == 'EUR':
-            total_expense += transaction.amount * 14500
+            balance -= transaction.amount * 14500
         elif transaction.valyuta_turi == 'RUB':
-            total_expense += transaction.amount * 160
+            balance -= transaction.amount * 160
         else:
-            total_expense += transaction.amount
-
-    balance = total_income - total_expense
+            balance -= transaction.amount
 
     category_expenses = (
         Transaction.objects
@@ -126,16 +129,11 @@ def add_transaction(request):
     lst = []
     for expense in category_expenses:
         if expense['valyuta_turi'] == 'USD':
-            exchange_rate = 13000
-            total_amount_in_som = expense['total_amount'] * exchange_rate
+            total_amount_in_som = expense['total_amount'] * 13000
         elif expense['valyuta_turi'] == 'EUR':
-            exchange_rate = 14500
-            total_amount_in_som = expense['total_amount'] * exchange_rate
+            total_amount_in_som = expense['total_amount'] * 14500
         elif expense['valyuta_turi'] == 'RUB':
-            exchange_rate = 160
-            total_amount_in_som = expense['total_amount'] * exchange_rate
-        elif expense['valyuta_turi'] == 'Karta':
-            total_amount_in_som = expense['total_amount']
+            total_amount_in_som = expense['total_amount'] * 160
         else:
             total_amount_in_som = expense['total_amount']
         lst.append({
@@ -143,14 +141,31 @@ def add_transaction(request):
             'total_amount_in_som': total_amount_in_som
         })
 
-
     if request.method == 'POST':
         form = TransactionForm(request.POST)
         if form.is_valid():
             transaction = form.save(commit=False)
-            transaction.user = request.user
-            if transaction.type == 'OUT' and transaction.amount > balance:
-                return render(request, 'add_transaction.html', {'form': form, 'error_message': 'Balansingiz yetarli emas. Iltimos, balansingizni to\'ldiring.'})
+            transaction.user = user
+
+            if transaction.type == 'OUT':
+                if transaction.valyuta_turi == 'USD':
+                    amount_in_som = transaction.amount * 13000
+                elif transaction.valyuta_turi == 'EUR':
+                    amount_in_som = transaction.amount * 14500
+                elif transaction.valyuta_turi == 'RUB':
+                    amount_in_som = transaction.amount * 160
+                else:
+                    amount_in_som = transaction.amount
+
+                if amount_in_som > balance:
+                    return render(request, 'add_transaction.html', {
+                        'form': form,
+                        'transactions': transactions,
+                        'balance': balance,
+                        'category_expenses': lst,
+                        'error_message': "Balansingiz yetarli emas. Iltimos, balansingizni to'ldiring."
+                    })
+
             transaction.save()
             return redirect('index')
     else:
@@ -158,14 +173,13 @@ def add_transaction(request):
 
     context = {
         'transactions': transactions,
-        'total_income': total_income,
-        'total_expense': total_expense,
         'balance': balance,
         'category_expenses': lst,
         'form': form,
     }
 
     return render(request, 'add_transaction.html', context)
+
 
 
 @login_required
