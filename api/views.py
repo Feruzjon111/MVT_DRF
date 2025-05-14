@@ -178,7 +178,7 @@ class Email_or_Phone(APIView):
             return Response({'error': "Kamida telefon yoki email kiriting"}, status=400)
         phone_str = str(phone) if phone else None
         is_email = isinstance(email, str) and EMAIL_REGEX.match(email)
-        is_phone = phone_str and phone.isdigit() and len(phone) == 12 and phone.startswith("998")
+        is_phone = (isinstance(phone_str, str) and phone_str.isdigit() and len(phone_str) == 12 and phone_str.startswith("998"))
 
         if email and not is_email:
             return Response({'error': "Email formati noto‘g‘ri"}, status=400)
