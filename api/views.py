@@ -176,30 +176,41 @@ class Email_or_Phone(APIView):
 
         if not email and not phone:
             return Response({'error': "Kamida telefon yoki email kiriting"}, status=400)
-        phone_str = str(phone) if phone else None
+
+        if not data['phone']:
+            return Response({
+                'error': "To'g'ri malumot kiritilmagan"
+            })
+
+        if len(str(data['phone'])) != 12 or not isinstance(data['phone'], int) or str(data['phone'])[:3] != '998':
+            return Response({
+                'error': "Telefon raqami noto'g'ri kiritildi"
+            })
+
         is_email = isinstance(email, str) and EMAIL_REGEX.match(email)
-        is_phone = (isinstance(phone_str, str) and phone_str.isdigit() and len(phone_str) == 12 and phone_str.startswith("998"))
+        is_phone = isinstance(phone, int) or (isinstance(phone, str) and phone.isdigit())
 
         if email and not is_email:
             return Response({'error': "Email formati noto‘g‘ri"}, status=400)
 
-        if phone and not is_phone:
-            return Response({'error': "Telefon raqami noto‘g‘ri"}, status=400)
 
-        code = str(random.randint(1000, 9999))
-        key = str(uuid.uuid4()) + code
+
+        code = ''.join([str(random.randint(1,9999))[-1] for _ in range(4)])
+        key = uuid.uuid4().__str__() + code
 
         if is_email:
             print(f"EMAILga yuborilgan kod: {code}")
             send_code(email, code)
+
         if is_phone:
             print(f"PHONEga yuborilgan kod: {code}")
             send_code(phone, code)
+        otp = OTP.objects.create(phone=data['phone'], key=key)
 
-        OTP.objects.create(phone=phone or '', key=key)
+
         return Response({
             'otp': code,
-            'token': key
+            'token': otp.key
         })
 
 
