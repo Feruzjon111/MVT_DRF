@@ -17,6 +17,9 @@ from .serializers import TransactionSerializer
 
 
 class ListCreateAPI(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
     def get(self, request):
         transactions = Transaction.objects.all()
         serializer = TransactionSerializer(transactions, many=True)
@@ -31,6 +34,8 @@ class ListCreateAPI(APIView):
 
 
 class DetailAPI(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
 
     def get_object(self, pk):
         try:
@@ -65,7 +70,7 @@ class DetailAPI(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# byyog'i register qismi
+                                # buyog'i register qismi
 
 class RegisterAPIView(APIView):
     def post(self, request):
@@ -171,9 +176,9 @@ class Email_or_Phone(APIView):
 
         if not email and not phone:
             return Response({'error': "Kamida telefon yoki email kiriting"}, status=400)
-
+        phone_str = str(phone) if phone else None
         is_email = isinstance(email, str) and EMAIL_REGEX.match(email)
-        is_phone = isinstance(phone, str) and phone.isdigit() and len(phone) == 12 and phone.startswith("998")
+        is_phone = phone_str and phone.isdigit() and len(phone) == 12 and phone.startswith("998")
 
         if email and not is_email:
             return Response({'error': "Email formati noto‘g‘ri"}, status=400)

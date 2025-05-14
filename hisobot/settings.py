@@ -159,14 +159,17 @@ EMAIL_HOST_PASSWORD = "ofumwpwsibkfmtbl"
 
 
 from django.utils.translation import gettext_lazy as _
+from pathlib import Path
 
 LANGUAGES = [
+    ('en', _('English')),
     ('uz', _('Uzbek')),
     ('ru', _('Russian')),
-    ('en', _('English')),
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 USE_I18N = True
 USE_L10N = True
